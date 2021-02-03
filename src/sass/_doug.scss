@@ -1,3 +1,23 @@
-DOUG_base {
-    
+.DOUG {
+
+    &_container {
+        margin: 0 auto;
+        padding: 1rem;
+        width: 800px;
+        box-shadow: 0 1rem 4rem rgba(0, 0, 0, .2);
+    }
+
+    &_content {
+        
+        &_container {
+            
+        }
+
+        &_title {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+
+    }
 }
