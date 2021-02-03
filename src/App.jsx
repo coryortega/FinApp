@@ -19,7 +19,15 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Is the form working? ${user.name} ${user.age} ${user.expenses.rent}`)
+    const savingRatio = user.savings / user.income;
+
+    if(savingRatio < 0.1) {
+      alert(`Hey ${user.name}, your financial state is poor because you're not saving enough.`)
+    } else if (savingRatio >= 0.1 && savingRatio < 0.2) {
+      alert(`Hey ${user.name}, your financial state is pretty good. However, you could save a little more`)
+    } else {
+      alert(`Hey ${user.name}, your financial state is great! You're saving 20% or more.`)
+    }
   }
 
   return (
