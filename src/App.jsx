@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import Content from './components/Cont'
+
 function App() {
   const initialUser = {
     name: "",
