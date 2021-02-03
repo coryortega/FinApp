@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // apis
 import youtube from '../apis/youtube';
@@ -18,25 +18,53 @@ const initialUser = {
       {loans: 0}
     ]
 
-  };
+};
 
-const Content = (User) => {
+const Content = (props) => {
+    console.log(props);
     // some state
     const [videos, setVideos] = useState([]);
     const [articles, setArticles] = useState([]);
+    // const [user, setUser] = useState(props.user);
+
+    // upon initial render and initial render only
+    useEffect(() => {
+        console.log('init render and init render only')
+        onInfoSubmit();
+    }, []);
+
+    // on every render
+    useEffect(() => {
+        console.log('every render');
+        console.log(`numArticles: ${articles.length}`);
+        console.log(`numVideos: ${videos.length}`);
+    });
 
     // onInfoSubmit 
     const onInfoSubmit = () => {
-        fetchVideos(User.financial_health);
-        fetchArticles(User.financial_health);
+        if (props.user) {
+            const health = props.user.financialHealth[0];
+            let term = '';
+
+            if (health === 'poor') {
+                term = 'saving money';
+            } else if (health === 'good') {
+                term = '401k';
+            } else { // else, financial_health === 'great'
+                term = 'investing strategies';
+            }
+
+            fetchVideos(term);
+            fetchArticles(term);
+        }
     };
 
     // get articles/videos from apis
-    const fetchVideos = async (financial_health) => {
+    const fetchVideos = async (term) => {
         try {
             const response = await youtube.get('/search', {
                 params: {
-                    q: 'term',
+                    q: term,
                     part: 'snippet',
                     type: 'video',
                     maxResults: 5,
@@ -44,28 +72,76 @@ const Content = (User) => {
                 }
             });
 
-            // update videos
+            // update videos with response
             setVideos(response.data.items);
+
         } catch(err) {
             console.log(err);
         };
     };
 
-    const fetchArticles = async (financial_health) => {
+    const fetchArticles = async (term) => {
         try {
-            const response = await news.get('');
+            const response = await news.get('/everything', {
+                params: {
+                    q: term,
+                    apiKey: process.env.REACT_APP_NEWS_API_KEY
+                }
+            });
 
-            // update articles
-            setArticles(response.data.items);
+            // update articles with response
+            // console.log(response);
+            setArticles(response.data.articles);
+
         } catch(err) {
             console.log(err);
         };
     };
-    
+
+    const articleList = articles.map((article) => {
+        return (
+            <div>
+                {article.title}
+            </div>
+        )
+    })
+
+    const videoList = videos.map((video) => {
+        return (
+            <div className="DOUG_video_single">
+                <img
+                    alt={video.snippet.title}
+                    className="DOUG_video_image"
+                    src={video.snippet.thumbnails.medium.url}
+                />
+                <div className="DOUG_video_content">
+                    <div className="DOUG_video_header">
+                        {video.snippet.title}
+                    </div>
+                </div>
+            </div>
+        );
+    });
+
     return (
         <div className="DOUG_container">
             <h3 className="DOUG_content_title">Content Corner</h3>
             <div className="DOUG_content_container">
+                {props.user && props.user.financialHealth[0] === 'poor' 
+                ? <p className="DOUG_content_description">Your rating was "{props.user.financialHealth[0]}". That's okay! Check out these resources for some financial strategies.</p> 
+                : null}
+
+                {props.user && props.user.financialHealth[0] === 'good' 
+                ? <p className="DOUG_content_description">Your rating was "{props.user.financialHealth[1]}". That's awesome! Check out these resources for some financial strategies.</p> 
+                : null}
+
+                {props.user && props.user.financialHealth[0] === 'great' 
+                ? <p className="DOUG_content_description">Your rating was "{props.user.financialHealth[2]}". Check out these resources for some investing strategies to put that money to work.</p> 
+                : null}
+
+                {/* Articles and Videos */}
+                {articleList ? <div className="DOUG_content_articles">{articleList}</div> : null}
+                {videoList ? <div className="DOUG_content_videos">{videoList}</div> : null}
 
             </div>
         </div>
