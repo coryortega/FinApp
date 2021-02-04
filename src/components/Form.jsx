@@ -1,16 +1,17 @@
 import React from 'react';
 
 export default function Form(props) {
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const savingRatio = user.savings / user.income;
+        const savingRatio = props.user.savings / props.user.income;
     
         if(savingRatio < 0.1) {
-          setUser({...user, status: 'poor'})
+          props.setUser({...props.user, status: 'poor'})
         } else if (savingRatio >= 0.1 && savingRatio < 0.2) {
-          setUser({...user, status: 'good'})
+          props.setUser({...props.user, status: 'good'})
         } else {
-          setUser({...user, status: 'great'})
+          props.setUser({...props.user, status: 'great'})
         }
       }
 
@@ -23,32 +24,32 @@ export default function Form(props) {
             Name:
             <input
               type="text"
-              value={user.name}
-              onChange={e => setUser({...user, name: e.target.value})}
+              value={props.user.name}
+              onChange={e => props.setUser({...props.user, name: e.target.value})}
             />
           </label>
           <label>
             Age:
             <input
               type="number"
-              value={user.age}
-              onChange={e => setUser({...user, age: e.target.value})}
+              value={props.user.age}
+              onChange={e => props.setUser({...props.user, age: e.target.value})}
             />
           </label>
           <label>
             Monthly income:
             <input
               type="number"
-              value={user.income}
-              onChange={e => setUser({...user, income: e.target.value})}
+              value={props.user.income}
+              onChange={e => props.setUser({...props.user, income: e.target.value})}
             />
           </label>
           <label>
             Monthly savings:
             <input
               type="number"
-              value={user.savings}
-              onChange={e => setUser({...user, savings: e.target.value})}
+              value={props.user.savings}
+              onChange={e => props.setUser({...props.user, savings: e.target.value})}
             />
           </label>
           </div>
@@ -60,32 +61,32 @@ export default function Form(props) {
               Rent:
               <input
                 type="number"
-                value={user.expenses.rent}
-                onChange={e => setUser({...user, expenses: {...user.expenses, rent: e.target.value}})}
+                value={props.user.expenses.rent}
+                onChange={e => props.setUser({...props.user, expenses: {...props.user.expenses, rent: e.target.value}})}
               />
             </label>
             <label>
               Credit card:
               <input
                 type="number"
-                value={user.expenses.creditCard}
-                onChange={e => setUser({...user, expenses: {...user.expenses, creditCard: e.target.value}})}
+                value={props.user.expenses.creditCard}
+                onChange={e => props.setUser({...props.user, expenses: {...props.user.expenses, creditCard: e.target.value}})}
               />
             </label>
             <label>
               Groceries:
               <input
                 type="number"
-                value={user.expenses.groceries}
-                onChange={e => setUser({...user, expenses: {...user.expenses, groceries: e.target.value}})}
+                value={props.user.expenses.groceries}
+                onChange={e => props.setUser({...props.user, expenses: {...props.user.expenses, groceries: e.target.value}})}
               />
             </label>
             <label>
               Loans:
               <input
                 type="number"
-                value={user.expenses.loans}
-                onChange={e => setUser({...user, expenses: {...user.expenses, loans: e.target.value}})}
+                value={props.user.expenses.loans}
+                onChange={e => props.setUser({...props.user, expenses: {...props.user.expenses, loans: e.target.value}})}
               />
             </label>
           </div>
