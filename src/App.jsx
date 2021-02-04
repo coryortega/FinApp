@@ -1,24 +1,27 @@
+import React, {useState} from 'react'
+import Chart from './components/Chart';
+
 function App() {
   const initialUser = {
-    name: "",
-    age: 0,
-    income: 0,
-    rent: 0,
-    funBudget: 0,
-    savings: 0,
-    expenses: [
-      {creditCard: 0},
-      {groceries: 0},
-      {loans: 0}
-    ]
-
+    name: 'Steve Marquez',
+    age: 25,
+    income: 1000,
+    rent: 300,
+    funBudget: 500,
+    savings: 100,
+    expenses: {
+      rent: 500,
+      creditCard: 300,
+      groceries: 120,
+      loans: 100,
+    },
   };
 
   const [user, setUser] = useState(initialUser);
 
   return (
     <div className='App'>
-      <h1>Hello</h1>
+      <Chart data={initialUser} />
     </div>
   );
 }
