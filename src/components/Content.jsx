@@ -5,20 +5,20 @@ import youtube from '../apis/youtube';
 import news from '../apis/news';
 
 // some incoming props
-const initialUser = {
-    name: "",
-    age: 0,
-    income: 0,
-    rent: 0,
-    funBudget: 0,
-    savings: 0,
-    expenses: [
-      {creditCard: 0},
-      {groceries: 0},
-      {loans: 0}
-    ]
+// const initialUser = {
+//     name: "",
+//     age: 0,
+//     income: 0,
+//     rent: 0,
+//     funBudget: 0,
+//     savings: 0,
+//     expenses: [
+//       {creditCard: 0},
+//       {groceries: 0},
+//       {loans: 0}
+//     ]
 
-};
+// };
 
 const Content = (props) => {
     console.log(props);
@@ -43,7 +43,7 @@ const Content = (props) => {
     // onInfoSubmit 
     const onInfoSubmit = () => {
         if (props.user) {
-            const health = props.user.financialHealth[0];
+            const health = props.user.status;
             let term = '';
 
             if (health === 'poor') {
@@ -67,7 +67,7 @@ const Content = (props) => {
                     q: term,
                     part: 'snippet',
                     type: 'video',
-                    maxResults: 5,
+                    maxResults: 3,
                     key: process.env.REACT_APP_YT_API_KEY
                 }
             });
@@ -91,7 +91,7 @@ const Content = (props) => {
 
             // update articles with response
             // console.log(response);
-            setArticles(response.data.articles);
+            setArticles(response.data.articles.slice(0, 3));
 
         } catch(err) {
             console.log(err);
@@ -100,20 +100,27 @@ const Content = (props) => {
 
     const articleList = articles.map((article) => {
         return (
-            <div>
-                {article.title}
+            <div className="DOUG_article_single">
+                {/* <img src={article.} */}
+                <div className="DOUG_article_text">
+                    <h3 className="DOUG_article_title">{article.title}</h3>
+                    <p className="DOUG_article_author">{article.author}</p>
+                    <p className="DOUG_article_preview">{article.description}</p>
+                </div>
             </div>
         )
     })
 
+    const videoSrc = "https://www.youtube.com/embed/";
     const videoList = videos.map((video) => {
         return (
             <div className="DOUG_video_single">
-                <img
+                <iframe title="video player" src={videoSrc + video.id.videoId} />
+                {/* <img
                     alt={video.snippet.title}
                     className="DOUG_video_image"
                     src={video.snippet.thumbnails.medium.url}
-                />
+                /> */}
                 <div className="DOUG_video_content">
                     <div className="DOUG_video_header">
                         {video.snippet.title}
@@ -127,22 +134,32 @@ const Content = (props) => {
         <div className="DOUG_container">
             <h3 className="DOUG_content_title">Content Corner</h3>
             <div className="DOUG_content_container">
-                {props.user && props.user.financialHealth[0] === 'poor' 
-                ? <p className="DOUG_content_description">Your rating was "{props.user.financialHealth[0]}". That's okay! Check out these resources for some financial strategies.</p> 
+                {props.user && props.user.status === 'poor' 
+                ? <p className="DOUG_content_description">Your rating was "{props.user.status}". That's okay! Check out these resources for some financial strategies.</p> 
                 : null}
 
-                {props.user && props.user.financialHealth[0] === 'good' 
-                ? <p className="DOUG_content_description">Your rating was "{props.user.financialHealth[1]}". That's awesome! Check out these resources for some financial strategies.</p> 
+                {props.user && props.user.status === 'good' 
+                ? <p className="DOUG_content_description">Your rating was "{props.user.status}". That's awesome! Check out these resources for some financial strategies.</p> 
                 : null}
 
-                {props.user && props.user.financialHealth[0] === 'great' 
-                ? <p className="DOUG_content_description">Your rating was "{props.user.financialHealth[2]}". Check out these resources for some investing strategies to put that money to work.</p> 
+                {props.user && props.user.status === 'great' 
+                ? <p className="DOUG_content_description">Your rating was "{props.user.status}". Check out these resources for some investing strategies to put that money to work.</p> 
                 : null}
 
                 {/* Articles and Videos */}
-                {articleList ? <div className="DOUG_content_articles">{articleList}</div> : null}
-                {videoList ? <div className="DOUG_content_videos">{videoList}</div> : null}
-
+                <div className="DOUG_content_materials">
+                    {articleList 
+                    ? <div className="DOUG_content_articles">
+                        {articleList}
+                        </div>
+                    : null}
+                    
+                    {videoList 
+                    ? <div className="DOUG_content_videos">
+                            {videoList}
+                        </div>
+                    : null}
+                </div>
             </div>
         </div>
     );

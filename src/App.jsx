@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Content from './components/Cont'
+import Content from './components/Content'
 
 function App() {
   const initialUser = {
@@ -13,7 +13,8 @@ function App() {
       {creditCard: 0},
       {groceries: 0},
       {loans: 0}
-    ]
+    ],
+    financialHealth: ['poor', 'good', 'great'],
 
   };
 
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className='App'>
       <h1>Hello</h1>
+      <Content user={user} />
     </div>
   );
 }
