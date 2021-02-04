@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './sass/_cory.scss';
 import Chart from './components/Chart';
+import Content from './components/Content';
+
 
 function App() {
   const initialUser = {
@@ -134,6 +136,7 @@ function App() {
         </div>
       </form>
       <Chart data={initialUser} />
+      <Content user={user} />
     </div>
   );
 }
