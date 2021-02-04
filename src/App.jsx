@@ -26,8 +26,8 @@ function App() {
     <div className='App'>
       <h1>FinApp 4 Lief</h1>
       <Form setUser={setUser} user={user} />
-      <Chart />
-      <Content user={user} />
+      <Chart userData={user} />
+      {/* <Content user={user} /> */}
     </div>
   );
 }
