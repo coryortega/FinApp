@@ -47,7 +47,7 @@ const Chart = ({ userData }) => {
   };
 
   return (
-    <div className='chart'>
+    <div className='Chart_container'>
       <Doughnut
         data={{
           labels: defaultLabel(),

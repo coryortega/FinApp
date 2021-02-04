@@ -27,7 +27,7 @@ function App() {
       <h1>FinApp 4 Lief</h1>
       <Form setUser={setUser} user={user} />
       <Chart userData={user} />
-      {/* <Content user={user} /> */}
+      <Content user={user} />
     </div>
   );
 }
