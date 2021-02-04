@@ -1,19 +1,43 @@
 import React from 'react';
 import 'chartjs-plugin-datalabels';
 
-import { Doughnut, Bar, Line, Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 const Chart = ({ data }) => {
   return (
     <div className='chart'>
-      <Pie
+      <Doughnut
         data={{
-          labels: ['Income', 'Expenses', 'Rent', 'Fun Budget', 'Savings'],
+          labels: [
+            'Income',
+            'Credit Card Expense',
+            'Rent',
+            'Groceries',
+            'Loans',
+            'Fun Budget',
+            'Savings',
+          ],
           datasets: [
             {
               label: 'Finances',
-              data: [data.income, 300, data.rent, data.funBudget, data.savings],
-              backgroundColor: ['red', 'green', 'blue', 'yellow', 'purple'],
+              data: [
+                data.income,
+                data.expenses.creditCard,
+                data.expenses.rent,
+                data.expenses.groceries,
+                data.expenses.loans,
+                data.funBudget,
+                data.savings,
+              ],
+              backgroundColor: [
+                'green',
+                'red',
+                'red',
+                'red',
+                'red',
+                'purple',
+                'orange',
+              ],
             },
           ],
         }}

@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import './sass/_cory.scss';
+import Chart from './components/Chart';
 
 function App() {
   const initialUser = {
-    name: '',
-    age: 0,
-    income: 0,
-    funBudget: 0,
-    savings: 0,
+    name: 'Steve',
+    age: 25,
+    income: 2500,
+    funBudget: 300,
+    savings: 500,
     status: '',
     expenses: {
-      rent: 0,
-      creditCard: 0,
-      groceries: 0,
-      loans: 0,
+      rent: 1000,
+      creditCard: 200,
+      groceries: 300,
+      loans: 350,
     },
   };
 
@@ -132,6 +133,7 @@ function App() {
           <input type='submit' value='Submit' />
         </div>
       </form>
+      <Chart data={initialUser} />
     </div>
   );
 }
