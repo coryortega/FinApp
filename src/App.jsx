@@ -5,16 +5,16 @@ import Chart from './components/Chart';
 function App() {
   const initialUser = {
     name: 'Steve',
-    age: 25,
-    income: 2500,
-    funBudget: 300,
-    savings: 500,
+    age: 0,
+    income: 0,
+    funBudget: 0,
+    savings: 0,
     status: '',
     expenses: {
-      rent: 1000,
-      creditCard: 200,
-      groceries: 300,
-      loans: 350,
+      rent: 0,
+      creditCard: 0,
+      groceries: 0,
+      loans: 0,
     },
   };
 
