@@ -4,7 +4,7 @@ import Chart from './components/Chart';
 
 function App() {
   const initialUser = {
-    name: 'Steve',
+    name: '',
     age: 0,
     income: 0,
     funBudget: 0,
