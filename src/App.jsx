@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './sass/_cory.scss'
+import Content from './components/Content';
 
 function App() {
   const initialUser = {
@@ -112,6 +112,7 @@ function App() {
           <input type="submit" value="Submit" />
         </div>
       </form>
+      <Content user={user} />
     </div>
   );
 }
