@@ -1,0 +1,10 @@
+.Chart { 
+  &_container {
+    margin: 100px auto;
+    padding: 1rem;
+    border-radius: 0px;
+background: linear-gradient(145deg, #F0F9FE, #009cf0);
+box-shadow:  5px 5px 7px #F0F9FE,
+             -1px -1px 3px #F0F9FE;
+  }  
+}

@@ -4,7 +4,6 @@ import Chart from './components/Chart';
 import Content from './components/Content';
 import Form from './components/Form';
 
-
 function App() {
   const initialUser = {
     name: '',
@@ -27,6 +26,7 @@ function App() {
     <div className='App'>
       <h1>FinApp 4 Lief</h1>
       <Form setUser={setUser} user={user} />
+      <Chart userData={user} />
       <Content user={user} />
     </div>
   );

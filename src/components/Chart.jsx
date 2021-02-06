@@ -1,34 +1,60 @@
 import React from 'react';
 import 'chartjs-plugin-datalabels';
-
 import { Doughnut } from 'react-chartjs-2';
 
-const Chart = ({ data }) => {
+const Chart = ({ userData }) => {
+  let income = userData.income;
+  let rent = userData.expenses.rent;
+  let groceries = userData.expenses.groceries;
+  let loans = userData.expenses.loans;
+  let creditCard = userData.expenses.creditCard;
+  let funBudget = userData.expenses.funBudget;
+  let savings = userData.savings;
+
+  // Funbudget is missing - tell cory
+  let remainIncome = income - rent - groceries - loans - creditCard;
+
+  const defaultData = () => {
+    if (income === 0) {
+      return [1];
+    } else {
+      return [
+        remainIncome,
+        creditCard,
+        rent,
+        groceries,
+        loans,
+        funBudget,
+        savings,
+      ];
+    }
+  };
+
+  const defaultLabel = () => {
+    if (income === 0) {
+      return ['Insert Financial Information'];
+    } else {
+      return [
+        remainIncome < income ? 'Income Remainder' : 'Income',
+        'Credit Card Payment',
+        'Rent',
+        'Groceries',
+        'Loans',
+        'Fun Budget',
+        'Savings',
+      ];
+    }
+  };
+
   return (
-    <div className='chart'>
+    <div className='Chart_container'>
       <Doughnut
         data={{
-          labels: [
-            'Income',
-            'Credit Card Expense',
-            'Rent',
-            'Groceries',
-            'Loans',
-            'Fun Budget',
-            'Savings',
-          ],
+          labels: defaultLabel(),
           datasets: [
             {
               label: 'Finances',
-              data: [
-                data.income,
-                data.expenses.creditCard,
-                data.expenses.rent,
-                data.expenses.groceries,
-                data.expenses.loans,
-                data.funBudget,
-                data.savings,
-              ],
+              data: defaultData(),
               backgroundColor: [
                 'green',
                 'red',
@@ -38,16 +64,31 @@ const Chart = ({ data }) => {
                 'purple',
                 'orange',
               ],
+              hoverBackgroundColor: ['#31B2F2'],
             },
           ],
         }}
         options={{
           plugins: {
-            datalabels: { display: true, color: 'white' },
+            datalabels: {
+              display: userData.income === 0 ? false : true,
+              color: [
+                'red',
+                'black',
+                'black',
+                'black',
+                'black',
+                'orange',
+                ' yellow',
+              ],
+              font: {
+                size: 19,
+              },
+            },
           },
           title: {
             display: true,
-            text: `${data.name} Finances`,
+            text: `${userData.name} Finances`,
           },
         }}
       />
