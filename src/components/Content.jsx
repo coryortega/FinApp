@@ -131,7 +131,7 @@ const Content = (props) => {
     });
 
     return (
-        <div className="DOUG_container">
+        <div id="content" className="DOUG_container">
             <h3 className="DOUG_content_title">Content Corner</h3>
             <div className="DOUG_content_container">
                 {props.user && props.user.status === 'poor' 

@@ -1,3 +1,25 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+// for 'main' wrapping component
+.title {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 100%;
+    background-color: #def2fd;
+}
 
 .form-container {
     display: flex;
@@ -6,14 +28,21 @@
     align-items: center;
 }
 
+.Chart_container {
+    width: 500px;
+    height: 500px;
+}
+
 form {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
-    background-color: #def2fd;
     padding-bottom: 15px;
     border-radius: 15px;
-    width: 50%;
+
+    width: 600px;
+    // width: 50%;
 }
 
 .general-info {
@@ -42,4 +71,8 @@ input {
     padding: 10px;
     width: 250px;
     border-radius: 5px;
+}
+
+.btn {
+    // align-self: center;
 }
