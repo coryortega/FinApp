@@ -68,7 +68,12 @@ const Chart = ({ userData }) => {
             },
           ],
         }}
+        width={100}
+        height={100}
         options={{
+          maintainAspectRatio: false,
+          responsive: true,
+          height: '500',
           plugins: {
             datalabels: {
               display: userData.income === 0 ? false : true,

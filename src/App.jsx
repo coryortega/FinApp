@@ -24,9 +24,11 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>FinApp 4 Lief</h1>
-      <Form setUser={setUser} user={user} />
-      <Chart userData={user} />
+      <h1 class="title">FinApp</h1>
+      <div className="main">
+        <Form setUser={setUser} user={user} />
+        <Chart userData={user} />
+      </div>
       <Content user={user} />
     </div>
   );
