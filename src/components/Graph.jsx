@@ -1,8 +1,8 @@
 import React from 'react';
 import 'chartjs-plugin-datalabels';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
-const Chart = ({ userData }) => {
+const Graph = ({ userData }) => {
   let income = userData.income;
   let rent = userData.expenses.rent;
   let groceries = userData.expenses.groceries;
@@ -10,38 +10,6 @@ const Chart = ({ userData }) => {
   let creditCard = userData.expenses.creditCard;
   let savings = userData.savings;
   let remainIncome = income - rent - groceries - loans - creditCard - savings;
-
-  const defaultData = () => {
-    if (income === 0) {
-      return [1];
-    } else {
-      return [
-        remainIncome,
-        creditCard,
-        rent,
-        groceries,
-        loans,
-        getFunBudget(remainIncome, income),
-        savings,
-      ];
-    }
-  };
-
-  const defaultLabel = () => {
-    if (income === 0) {
-      return ['Insert Financial Information'];
-    } else {
-      return [
-        remainIncome < income ? 'Income remaining balance' : 'Income',
-        'Credit Card Payment',
-        'Rent',
-        'Groceries',
-        'Loans',
-        'Fun Budget',
-        'Savings',
-      ];
-    }
-  };
 
   const getFunBudget = (remainder, income) => {
     let percentage = (remainder / income) * 100;
@@ -52,13 +20,30 @@ const Chart = ({ userData }) => {
   };
 
   return (
-    <div className='Chart_container'>
-      <Doughnut
+    <div>
+      <Bar
         data={{
-          labels: defaultLabel(),
+          labels: [
+            'Yearly Income After Expenses',
+            'Yearly Credit Card Payment',
+            'Yearly Rent',
+            'Yearly Groceries',
+            'Yearly Loans',
+            'Yearly Fun Budget',
+            'Yearly Savings',
+          ],
           datasets: [
             {
-              data: defaultData(),
+              label: 'Yearly Projection',
+              data: [
+                remainIncome * 12,
+                creditCard * 12,
+                rent * 12,
+                groceries * 12,
+                loans * 12,
+                getFunBudget(remainIncome, income) * 12,
+                savings * 12,
+              ],
               backgroundColor: [
                 'green',
                 'red',
@@ -85,9 +70,10 @@ const Chart = ({ userData }) => {
             labels: {
               fontSize: 15,
               fontColor: 'black',
+              displayLegend: true,
             },
           },
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           responsive: true,
           plugins: {
             datalabels: {
@@ -102,7 +88,7 @@ const Chart = ({ userData }) => {
                 'white',
               ],
               font: {
-                size: 15,
+                size: 19,
               },
             },
           },
@@ -117,4 +103,4 @@ const Chart = ({ userData }) => {
   );
 };
 
-export default Chart;
+export default Graph;
