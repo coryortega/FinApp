@@ -24,7 +24,7 @@ const Graph = ({ userData }) => {
       <Bar
         data={{
           labels: [
-            'Yearly Income',
+            'Yearly Income After Expenses',
             'Yearly Credit Card Payment',
             'Yearly Rent',
             'Yearly Groceries',
