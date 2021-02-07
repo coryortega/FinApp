@@ -30,15 +30,18 @@ const Content = (props) => {
     // upon initial render and initial render only
     useEffect(() => {
         console.log('init render and init render only')
-        onInfoSubmit();
     }, []);
 
     // on every render
     useEffect(() => {
-        console.log('every render');
-        console.log(`numArticles: ${articles.length}`);
-        console.log(`numVideos: ${videos.length}`);
-    });
+        // console.log('');
+        // console.log('every render');
+        // console.log(`numArticles: ${articles.length}`);
+        // console.log(`numVideos: ${videos.length}`);
+        if (props.user.initialRender === false) {
+            onInfoSubmit();
+        }
+    }, [props.user.infoSubmitted]);
 
     // onInfoSubmit 
     const onInfoSubmit = () => {
@@ -101,9 +104,9 @@ const Content = (props) => {
     const articleList = articles.map((article) => {
         return (
             <div className="DOUG_article_single">
-                {/* <img src={article.} */}
+                <img src={article.urlToImage} alt={article.description} className="DOUG_article_image" />
                 <div className="DOUG_article_text">
-                    <h3 className="DOUG_article_title">{article.title}</h3>
+                    <h3><a className="DOUG_article_title" href={article.url}>{article.title}</a></h3>
                     <p className="DOUG_article_author">{article.author}</p>
                     <p className="DOUG_article_preview">{article.description}</p>
                 </div>
@@ -142,21 +145,23 @@ const Content = (props) => {
                 ? <p className="DOUG_content_description">Your rating was "{props.user.status}". That's awesome! Check out these resources for some financial strategies.</p> 
                 : null}
 
-                {props.user && props.user.status === 'great' 
+                {props.user && props.user.status === 'great'
                 ? <p className="DOUG_content_description">Your rating was "{props.user.status}". Check out these resources for some investing strategies to put that money to work.</p> 
                 : null}
 
                 {/* Articles and Videos */}
                 <div className="DOUG_content_materials">
-                    {articleList 
+                    {articleList.length !== 0
                     ? <div className="DOUG_content_articles">
+                        <h3 className="DOUG_content_articles_title">Articles</h3>
                         {articleList}
                         </div>
                     : null}
                     
-                    {videoList 
+                    {videoList.length !== 0
                     ? <div className="DOUG_content_videos">
-                            {videoList}
+                        <h3 className="DOUG_content_videos_title">Videos</h3>
+                        {videoList}
                         </div>
                     : null}
                 </div>

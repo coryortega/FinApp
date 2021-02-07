@@ -6,11 +6,11 @@ export default function Form(props) {
     const savingRatio = props.user.savings / props.user.income;
 
     if (savingRatio < 0.1) {
-      props.setUser({ ...props.user, status: "poor" });
+      props.setUser({ ...props.user, status: "poor", infoSubmitted: !props.user.infoSubmitted, initialRender: false });
     } else if (savingRatio >= 0.1 && savingRatio < 0.2) {
-      props.setUser({ ...props.user, status: "good" });
+      props.setUser({ ...props.user, status: "good", infoSubmitted: !props.user.infoSubmitted, initialRender: false });
     } else {
-      props.setUser({ ...props.user, status: "great" });
+      props.setUser({ ...props.user, status: "great", infoSubmitted: !props.user.infoSubmitted, initialRender: false });
     }
   };
 
