@@ -27,7 +27,7 @@ export default function Form(props) {
       errors["savings"] = "Please input the amount you save every month";
     }
 
-    if(props.user.savings > props.user.income) {
+    if(Number(props.user.savings) > Number(props.user.income)) {
       formIsValid = false;
       errors["savings"] = "Savings can't be more than you make";
     }
