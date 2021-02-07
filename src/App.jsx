@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1 class='title'>FinApp</h1>
+      <h1 className='title'>FinApp</h1>
       <div className='main'>
         <Form setUser={setUser} user={user} />
         <Chart userData={user} />

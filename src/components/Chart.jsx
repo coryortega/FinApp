@@ -32,7 +32,7 @@ const Chart = ({ userData }) => {
       return ['Insert Financial Information'];
     } else {
       return [
-        remainIncome < income ? 'Income remainder balance' : 'Income',
+        remainIncome < income ? 'Income remaining balance' : 'Income',
         'Credit Card Payment',
         'Rent',
         'Groceries',
@@ -69,7 +69,15 @@ const Chart = ({ userData }) => {
                 'purple',
                 'orange',
               ],
-              hoverBackgroundColor: ['#31B2F2'],
+              hoverBackgroundColor: [
+                '#013220',
+                '#8b0000',
+                '#8b0000',
+                '#8b0000',
+                '#8b0000',
+                '#301934',
+                '#ff8c00',
+              ],
             },
           ],
         }}
