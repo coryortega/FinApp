@@ -32,7 +32,7 @@ function App() {
         <Form setUser={setUser} user={user} />
         <Chart userData={user} />
       </div>
-      <Graph userData={user} />
+      {user.infoSubmitted ? <Graph userData={user} /> : ''}
       <Content user={user} />
     </div>
   );

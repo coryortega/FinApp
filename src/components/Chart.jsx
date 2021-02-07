@@ -46,7 +46,7 @@ const Chart = ({ userData }) => {
   const getFunBudget = (remainder, income) => {
     let percentage = (remainder / income) * 100;
 
-    if (percentage >= 25 && savings >= 1) {
+    if (percentage >= 20 && savings >= 1) {
       return Math.ceil((15 * remainder) / 100);
     }
   };
@@ -58,7 +58,6 @@ const Chart = ({ userData }) => {
           labels: defaultLabel(),
           datasets: [
             {
-              label: 'finances',
               data: defaultData(),
               backgroundColor: [
                 'green',
