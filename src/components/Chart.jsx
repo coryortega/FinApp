@@ -12,7 +12,7 @@ const Chart = ({ userData }) => {
   let savings = userData.savings;
 
   // Funbudget is missing - tell cory
-  let remainIncome = income - rent - groceries - loans - creditCard;
+  let remainIncome = income - rent - groceries - loans - creditCard - savings;
 
   const defaultData = () => {
     if (income === 0) {
@@ -35,7 +35,7 @@ const Chart = ({ userData }) => {
       return ['Insert Financial Information'];
     } else {
       return [
-        remainIncome < income ? 'Income Remainder' : 'Income',
+        remainIncome < income ? 'Income remainder balance' : 'Income',
         'Credit Card Payment',
         'Rent',
         'Groceries',
@@ -53,7 +53,7 @@ const Chart = ({ userData }) => {
           labels: defaultLabel(),
           datasets: [
             {
-              label: 'Finances',
+              label: 'finances',
               data: defaultData(),
               backgroundColor: [
                 'green',
@@ -68,12 +68,15 @@ const Chart = ({ userData }) => {
             },
           ],
         }}
-        width={100}
-        height={100}
         options={{
+          legend: {
+            labels: {
+              fontSize: 15,
+              fontColor: 'black',
+            },
+          },
           maintainAspectRatio: false,
           responsive: true,
-          height: '500',
           plugins: {
             datalabels: {
               display: userData.income === 0 ? false : true,
@@ -92,6 +95,7 @@ const Chart = ({ userData }) => {
             },
           },
           title: {
+            fontSize: 20,
             display: true,
             text: `${userData.name} Finances`,
           },
