@@ -19,6 +19,8 @@ function App() {
       groceries: 0,
       loans: 0,
     },
+    infoSubmitted: false,
+    initialRender: true,
   };
 
   const [user, setUser] = useState(initialUser);

@@ -1,18 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Form(props) {
+  const [errors, setErrors] = useState({});
+
+  const handleValidation = () => {
+    let errors = {};
+    let formIsValid = true;
+
+    if(!props.user.name) {
+      formIsValid = false;
+      errors["name"] = "Must put a name";
+    }
+
+    if(!props.user.age || props.user.age === 0) {
+      formIsValid = false;
+      errors["age"] = "Must put an age";
+    }
+
+    if(props.user.income === 0) {
+      formIsValid = false;
+      errors["income"] = "Please input your monthly income";
+    }
+
+    if(props.user.savings === 0) {
+      formIsValid = false;
+      errors["savings"] = "Please input the amount you save every month";
+    }
+
+    if(Number(props.user.savings) > Number(props.user.income)) {
+      formIsValid = false;
+      errors["savings"] = "Savings can't be more than you make";
+    }
+    
+    setErrors({errors: errors})
+    return formIsValid
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const savingRatio = props.user.savings / props.user.income;
 
-    if (savingRatio < 0.1) {
-      props.setUser({ ...props.user, status: "poor" });
-    } else if (savingRatio >= 0.1 && savingRatio < 0.2) {
-      props.setUser({ ...props.user, status: "good" });
+    if(handleValidation()) {
+      const savingRatio = props.user.savings / props.user.income;
+
+      if (savingRatio < 0.1) {
+        props.setUser({ ...props.user, status: "poor", infoSubmitted: !props.user.infoSubmitted, initialRender: false });
+      } else if (savingRatio >= 0.1 && savingRatio < 0.2) {
+        props.setUser({ ...props.user, status: "good", infoSubmitted: !props.user.infoSubmitted, initialRender: false });
+      } else {
+        props.setUser({ ...props.user, status: "great", infoSubmitted: !props.user.infoSubmitted, initialRender: false });
+      }
     } else {
-      props.setUser({ ...props.user, status: "great" });
+      alert("Please fix the errors")
     }
   };
+
 
   return (
     <div className="form-container">
@@ -29,6 +70,7 @@ export default function Form(props) {
                   props.setUser({ ...props.user, name: e.target.value })
                 }
               />
+              <span style={{color: "red"}}>{errors.errors?.["name"]}</span>
             </label>
             <label>
               Age:
@@ -39,6 +81,7 @@ export default function Form(props) {
                   props.setUser({ ...props.user, age: e.target.value })
                 }
               />
+              <span style={{color: "red"}}>{errors.errors?.["age"]}</span>
             </label>
             <label>
               Monthly income:
@@ -49,6 +92,7 @@ export default function Form(props) {
                   props.setUser({ ...props.user, income: e.target.value })
                 }
               />
+              <span style={{color: "red"}}>{errors.errors?.["income"]}</span>
             </label>
             <label>
               Monthly savings:
@@ -59,6 +103,7 @@ export default function Form(props) {
                   props.setUser({ ...props.user, savings: e.target.value })
                 }
               />
+              <span style={{color: "red", width: "250px"}}>{errors.errors?.["savings"]}</span>
             </label>
           </div>
         </div>
