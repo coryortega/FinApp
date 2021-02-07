@@ -45,8 +45,9 @@ const Chart = ({ userData }) => {
 
   const getFunBudget = (remainder, income) => {
     let percentage = (remainder / income) * 100;
-    if (percentage >= 25) {
-      return remainder * 0.1;
+
+    if (percentage >= 25 && savings >= 1) {
+      return Math.ceil((15 * remainder) / 100);
     }
   };
 
@@ -84,9 +85,17 @@ const Chart = ({ userData }) => {
           plugins: {
             datalabels: {
               display: userData.income === 0 ? false : true,
-              color: ['white'],
+              color: [
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+                'white',
+              ],
               font: {
-                size: 19,
+                size: 15,
               },
             },
           },
