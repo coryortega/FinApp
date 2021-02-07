@@ -125,7 +125,7 @@ export default function Form(props) {
             </label>
           </div>
         </div>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="btn"/>
       </form>
     </div>
   );
