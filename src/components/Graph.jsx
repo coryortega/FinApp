@@ -1,8 +1,8 @@
 import React from 'react';
 import 'chartjs-plugin-datalabels';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
-const Chart = ({ userData }) => {
+const Graph = ({ userData }) => {
   let income = userData.income;
   let rent = userData.expenses.rent;
   let groceries = userData.expenses.groceries;
@@ -11,54 +11,15 @@ const Chart = ({ userData }) => {
   let savings = userData.savings;
   let remainIncome = income - rent - groceries - loans - creditCard - savings;
 
-  const defaultData = () => {
-    if (income === 0) {
-      return [1];
-    } else {
-      return [
-        remainIncome,
-        creditCard,
-        rent,
-        groceries,
-        loans,
-        getFunBudget(remainIncome, income),
-        savings,
-      ];
-    }
-  };
-
-  const defaultLabel = () => {
-    if (income === 0) {
-      return ['Insert Financial Information'];
-    } else {
-      return [
-        remainIncome < income ? 'Income remainder balance' : 'Income',
-        'Credit Card Payment',
-        'Rent',
-        'Groceries',
-        'Loans',
-        'Fun Budget',
-        'Savings',
-      ];
-    }
-  };
-
-  const getFunBudget = (remainder, income) => {
-    let percentage = (remainder / income) * 100;
-    if (percentage >= 25) {
-      return remainder * 0.1;
-    }
-  };
-
   return (
-    <div className='Chart_container'>
-      <Doughnut
+    <div>
+      <Bar
         data={{
-          labels: defaultLabel(),
+          labels: 'hi',
           datasets: [
             {
               label: 'finances',
-              data: defaultData(),
+              data: [income, rent, groceries, loans, creditCard, savings],
               backgroundColor: [
                 'green',
                 'red',
@@ -101,4 +62,4 @@ const Chart = ({ userData }) => {
   );
 };
 
-export default Chart;
+export default Graph;
