@@ -18,13 +18,15 @@ function App() {
       groceries: 0,
       loans: 0,
     },
+    infoSubmitted: false,
+    initialRender: true
   };
 
   const [user, setUser] = useState(initialUser);
 
   return (
     <div className='App'>
-      <h1 class="title">FinApp</h1>
+      <h1 className="title">FinApp</h1>
       <div className="main">
         <Form setUser={setUser} user={user} />
         <Chart userData={user} />

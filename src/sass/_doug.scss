@@ -4,7 +4,7 @@
         margin: 3rem auto;
         padding: 1rem;
         width: 1000px;
-        box-shadow: 0 1rem 4rem rgba(0, 0, 0, .1);
+        // box-shadow: 0 1rem 4rem rgba(0, 0, 0, .1);
     }
 
     &_content {
@@ -26,15 +26,25 @@
 
         &_materials {
             display: flex;
+            justify-content: space-around
         }
 
         &_articles {
+            max-width: 50%;
 
+            &_title {
+                font-size: 1.5rem;
+            }
         }
 
         &_videos {
+            max-width: 50%;
             display: flex;
             flex-direction: column;
+
+            &_title {
+                font-size: 1.5rem;
+            }
         }
 
     }
@@ -52,9 +62,19 @@
     }
 
     &_article {
-
         &_single {
-            
+            display: flex;
+            max-width: 300px;
+            flex-direction: column;
+        }
+
+        &_title {
+            color: black;
+            text-decoration: none;
+        }
+
+        &_image {
+            max-width: 200px;
         }
     }
 }
