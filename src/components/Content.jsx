@@ -21,7 +21,7 @@ import news from '../apis/news';
 // };
 
 const Content = (props) => {
-    console.log(props);
+    // console.log(props);
     // some state
     const [videos, setVideos] = useState([]);
     const [articles, setArticles] = useState([]);
