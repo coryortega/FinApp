@@ -7,9 +7,9 @@ It does this by not only visualizing and pointing out poor spending habits, but 
 Check out the production link here: https://main.d13txxw4ecfeqm.amplifyapp.com
 
 ### Development team:
-[Steve Marquez](https://github.com/Smarqu14)
-[Douglas Park](https://github.com/dogurasu)
-[Cory Ortega](https://github.com/coryortega)
+- [Steve Marquez](https://github.com/Smarqu14)
+- [Douglas Park](https://github.com/dogurasu)
+- [Cory Ortega](https://github.com/coryortega)
 
 #### How to run locally:
 1. Clone this repo
