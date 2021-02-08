@@ -32,7 +32,7 @@ const Chart = ({ userData }) => {
       return ['Insert Financial Information'];
     } else {
       return [
-        remainIncome < income ? 'Income remaining balance' : 'Income',
+        remainIncome < income ? 'Remaining income balance' : 'Income',
         'Credit Card Payment',
         'Rent',
         'Groceries',
