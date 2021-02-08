@@ -109,7 +109,7 @@ const Chart = ({ userData }) => {
           title: {
             fontSize: 20,
             display: true,
-            text: `${userData.name} Finances`,
+            text: `${userData.name}'s Finances`,
           },
         }}
       />
