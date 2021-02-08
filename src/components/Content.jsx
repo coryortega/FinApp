@@ -118,16 +118,16 @@ const Content = (props) => {
     const videoList = videos.map((video) => {
         return (
             <div className="DOUG_video_single">
-                <iframe title="video player" src={videoSrc + video.id.videoId} />
+                <iframe title="video player" src={videoSrc + video.id.videoId} className="DOUG_video_image"/>
                 {/* <img
                     alt={video.snippet.title}
                     className="DOUG_video_image"
                     src={video.snippet.thumbnails.medium.url}
                 /> */}
                 <div className="DOUG_video_content">
-                    <div className="DOUG_video_header">
-                        {video.snippet.title}
-                    </div>
+                    <h3 className="DOUG_video_header">
+                        <a href={`https://www.youtube.com/watch/${video.id.videoId}`} className="DOUG_video_link">{video.snippet.title}</a>
+                    </h3>
                 </div>
             </div>
         );
@@ -138,15 +138,15 @@ const Content = (props) => {
             <h3 className="DOUG_content_title">Content Corner</h3>
             <div className="DOUG_content_container">
                 {props.user && props.user.status === 'poor' 
-                ? <p className="DOUG_content_description">Your rating was "{props.user.status}". That's okay! Check out these resources for some financial strategies.</p> 
+                ? <p className="DOUG_content_description">Your rating was an "C". That's okay! Check out these resources for some financial strategies.</p> 
                 : null}
 
                 {props.user && props.user.status === 'good' 
-                ? <p className="DOUG_content_description">Your rating was "{props.user.status}". That's awesome! Check out these resources for some financial strategies.</p> 
+                ? <p className="DOUG_content_description">Your rating was a "B". That's awesome! Check out these resources for some financial strategies.</p> 
                 : null}
 
                 {props.user && props.user.status === 'great'
-                ? <p className="DOUG_content_description">Your rating was "{props.user.status}". Check out these resources for some investing strategies to put that money to work.</p> 
+                ? <p className="DOUG_content_description">Amazing! Your rating was an "A". Check out these resources for some investing strategies to put that money to work.</p> 
                 : null}
 
                 {/* Articles and Videos */}
