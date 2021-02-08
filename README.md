@@ -2,7 +2,9 @@
 
 FinApp is a web application that we built in one week for our MLH orientation hackathon. It's intention is to help users not only visualize their spending habits, but also suggest ways they can better set themselves up for financial success in the future.
 
-It does this by not only visualizing and pointing out poor spending habits, but by offering specialized content to help any user, regardless of their current financial state. Whether you're already extremely wealthy or are intending to be, FinApp can help you. 
+It does this by not only visualizing and pointing out poor spending habits, but by offering specialized content to help any user, regardless of their current financial state. Whether you're already extremely wealthy or are intending to be, FinApp can help you.
+
+Check out the production link here: https://main.d13txxw4ecfeqm.amplifyapp.com
 
 ### Development team:
 [Steve Marquez](https://github.com/Smarqu14)
